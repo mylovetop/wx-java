@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springapp.mvc.mapper.UserInfoMapper">
+
+    <cache
+        eviction="LRU"
+        flushInterval="60000"
+        size="512"
+        readOnly="true" />
+
+    <!-- <cache readOnly="true" type="org.mybatis.caches.ehcache.LoggingEhcache"/>   -->
+    <!--<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>-->
+
+    <resultMap id="id_userInfoVo" type="UserInfoVo">
+        <result column="id" property="id"></result>
+        <result column="open_id" property="openId"></result>
+
+        <result column="access_token" property="accessToken"></result>
+        <result column="nick_name" property="nickName"></result>
+        <result column="sex" property="sex"></result>
+        <result column="province" property="province"></result>
+        <result column="city" property="city"></result>
+        <result column="country" property="country"></result>
+        <result column="head_img_url" property="headImgUrl"></result>
+        <result column="privilege" property="privilege"></result>
+        <result column="unionid" property="unionid"></result>
+        <result column="refresh_token" property="refreshToken"></result>
+        <result column="scope" property="scope"></result>
+        <result column="phone" property="phone"></result>
+    </resultMap>
+
+
+    <select id="findByOpenId" parameterType="string" resultMap="id_userInfoVo">
+        select * from user_info where open_id = #{openId} limit 1
+    </select>
+
+    <update id="update" parameterType="UserInfoVo" flushCache="true">
+        update user_info
+        <set>
+            <trim suffix="" suffixOverrides=",">
+                <if test="accessToken != null">
+                    access_token = #{accessToken},
+                </if>
+                <if test="nickName != null">
+                    nick_name = #{nickName},
+                </if>
+                <if test="sex != null">
+                    sex = #{sex},
+                </if>
+                <if test="province != null">
+                    province = #{province},
+                </if>
+                <if test="city != null">
+                    city = #{city},
+                </if>
+                <if test="country != null">
+                    country = #{country},
+                </if>
+                <if test="headImgUrl != null">
+                    head_img_url = #{headImgUrl},
+                </if>
+                <if test="privilege != null">
+                    privilege = #{privilege},
+                </if>
+                <if test="unionid != null">
+                    unionid = #{unionid},
+                </if>
+                <if test="refreshToken != null">
+                    refresh_token = #{refreshToken},
+                </if>
+                <if test="phone != null">
+                    phone = #{phone},
+                </if>
+                <if test="scope != null">
+                    scope = #{scope}
+                </if>
+            </trim>
+        </set>
+        where open_id = #{openId}
+    </update>
+
+    <insert id="insert" parameterType="UserInfoVo" flushCache="true">
+        insert user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="openId != null">
+                open_id,
+            </if>
+            <if test="accessToken != null">
+                access_token,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="country != null">
+                country,
+            </if>
+            <if test="headImgUrl != null">
+                head_img_url,
+            </if>
+            <if test="privilege != null">
+                privilege,
+            </if>
+            <if test="unionid != null">
+                unionid,
+            </if>
+            <if test="refreshToken != null">
+                refresh_token,
+            </if>
+            <if test="scope != null">
+                scope,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="openId != null">
+                #{openId},
+            </if>
+            <if test="accessToken != null">
+                #{accessToken},
+            </if>
+            <if test="nickName != null">
+                #{nickName},
+            </if>
+            <if test="sex != null">
+                #{sex},
+            </if>
+            <if test="province != null">
+                #{province},
+            </if>
+            <if test="city != null">
+                #{city},
+            </if>
+            <if test="country != null">
+                #{country},
+            </if>
+            <if test="headImgUrl != null">
+                #{headImgUrl},
+            </if>
+            <if test="privilege != null">
+                #{privilege},
+            </if>
+            <if test="unionid != null">
+                #{unionid},
+            </if>
+            <if test="refreshToken != null">
+                #{refreshToken},
+            </if>
+            <if test="scope != null">
+                #{scope},
+            </if>
+        </trim>
+    </insert>
+</mapper>

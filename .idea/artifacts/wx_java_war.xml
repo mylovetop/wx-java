@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="wx-java:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="wx-java.war">
+      <element id="artifact" artifact-name="wx-java:war exploded" />
+    </root>
+  </artifact>
+</component>
